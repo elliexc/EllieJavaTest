@@ -1,3 +1,5 @@
+package HashMap;
+
 import java.awt.SystemTray;
 import java.util.Collection;
 import java.util.Collections;

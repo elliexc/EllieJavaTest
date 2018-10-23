@@ -1,11 +1,12 @@
+package LinkedList;
+
 /**
  * author: zhanghongtao
- * date  : 2018-10-17 3:10 PM
+ * date  : 2018-10-18 3:49 PM
  * email : zhtxcster@gmail.com
  */
 
-
-public class LinkedListExample {
+public class LinkedListTraverse {
 
     public static void main(String []args) {
         Node head = new Node(0);
@@ -18,37 +19,44 @@ public class LinkedListExample {
         node2.setNext(node3);
 
         Node h = head;
-        while ( h != null) {
-            System.out.print(h.getData() + " ");
+
+        System.out.println("Initial linked list");
+        while(h != null) {
+            System.out.print(h.getData());
             h = h.getNext();
         }
 
-        head = reverse(head);
-
-        System.out.print("\n************************\n");
-
-        while ( head != null) {
-            System.out.print(head.getData()+ " ");
+        System.out.println("\nReversed linked list");
+        head = traverse(head);
+        while(head != null) {
+            System.out.print(head.getData());
             head = head.getNext();
         }
 
-
     }
 
-    public static Node reverse(Node head){
+    public static Node traverse (Node head) {
 
-        if(head == null || head.getNext() == null) {
+        if (head == null) {
             return head;
         }
 
-        Node rehead = reverse(head.getNext());
-        head.getNext().setNext(head);
+        Node pre = head;
+        Node cur = head.getNext();
+        Node tmp;
+
+        while(cur != null) {
+            tmp = cur.getNext();
+            cur.setNext(pre);
+            pre = cur;
+            cur = tmp;
+        }
+
         head.setNext(null);
-        return rehead;
+        return pre;
+
     }
 }
-
-
 class Node {
     private int data;
     private Node next;
@@ -73,3 +81,4 @@ class Node {
         this.next = next;
     }
 }
+
